@@ -1,15 +1,20 @@
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import sandpit.HelloWorld
-import kotlin.test.assertEquals
 
 internal class HelloWorldTest {
 
     private val helloWorld = HelloWorld()
 
     @Test
-    fun `should greet user by name`() {
+    fun `should greet David by name`() {
 
-        assertEquals("Hello, David", helloWorld.sayHello("Davidzzz"))
+        assertEquals("Hello, David", helloWorld.sayHello("David"))
+    }
+
+    @Test
+    fun `should greet Fred by name`() {
+
+        assertEquals("Hello, Fred", helloWorld.sayHello("Fred"))
     }
 }
