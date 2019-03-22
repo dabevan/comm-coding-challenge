@@ -7,13 +7,13 @@ internal class HelloWorldTest {
     private val helloWorld = HelloWorld()
 
     @Test
-    fun `should greet David by name`() {
+    fun `Should greet David by name`() {
 
         assertEquals("Hello, David", helloWorld.sayHello("David"))
     }
 
     @Test
-    fun `should greet Fred by name`() {
+    fun `Should greet Fred by name`() {
 
         assertEquals("Hello, Fred", helloWorld.sayHello("Fred"))
     }
