@@ -32,21 +32,11 @@ abstract class SokobanItem(var x:Int, var y:Int) {
         }
     }
 
-    open fun performMoveUp() {
-        y = y - 1
-    }
-
-    open fun performMoveDown() {
-        y = y + 1
-    }
-
-    open fun performMoveLeft() {
-        x = x - 1
-    }
-
-    open fun performMoveRight() {
-        x = x + 1
-    }
+    //default move behavior for items
+    open fun performMoveUp() { y = y - 1 }
+    open fun performMoveDown() { y = y + 1 }
+    open fun performMoveLeft() { x = x - 1 }
+    open fun performMoveRight() { x = x + 1 }
 
 
     open fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean {
@@ -59,29 +49,23 @@ abstract class SokobanItem(var x:Int, var y:Int) {
     }
 }
 
+
 class Player(x: Int, y: Int) : SokobanItem(x, y) {
-
     override val type = "Player"
-
 }
+
 
 class Wall(x: Int, y: Int) : SokobanItem(x, y) {
-
     override val type = "Wall"
-
-    override fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean {
-        return false
-    }
+    //Walls never allow anyone to move to their location
+    override fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean { return false }
 }
 
+
 class StorageLocation(x: Int, y: Int) : SokobanItem(x, y) {
-
     override val type = "StorageLocation"
-
-    override fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean {
-        return true
-    }
-
+    override fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean { return true }
+    //Storage Locations don't move, so overriding default behaviour
     override fun performMoveUp() { }
     override fun performMoveDown() { }
     override fun performMoveLeft() { }
@@ -94,8 +78,9 @@ class Box(x: Int, y: Int) : SokobanItem(x, y) {
     override val type = "Box"
 
     override fun isOkForMeToMove(oldX :Int, oldY :Int, newX :Int, newY :Int, callingType :String): Boolean {
+        //Only a player can push a box (e.g. a box cannot push another box)
         if (callingType != "Player") return false
-        return super.isOkForMeToMove(oldX, oldY, newX,newY, type)
+        return super.isOkForMeToMove(oldX, oldY, newX,newY, type) //default behaviour
     }
 }
 

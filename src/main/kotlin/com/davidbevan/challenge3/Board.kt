@@ -9,6 +9,7 @@ class Board {
         var boardWidth = 0
         var boardHeight = 0
 
+
         fun createBoard(boardString: Array<String>) {
             var x: Int
             var y = 0
@@ -44,9 +45,23 @@ class Board {
             }
         }
 
+
         fun getSokobanItemsInLocation(x:Int, y:Int): List<SokobanItem> {
             return sokobanItems.filter { it.x == x && it.y == y}
         }
+
+
+        fun isChallengeComplete(): Boolean {
+            val storageLocations = sokobanItems.filter { it.type == "StorageLocation"}
+            storageLocations.map {
+                val itemsAtStorageLocations = getSokobanItemsInLocation(it.x, it.y)
+                if (itemsAtStorageLocations.size == 1) { return false }
+                if (itemsAtStorageLocations.size == 2) { if(itemsAtStorageLocations.first().type != "Box" &&
+                                                           itemsAtStorageLocations.last().type != "Box") { return false }}
+            }
+            return true
+        }
+
 
         fun toStringArray(): Array<String> {
             val outputBoardStringArray = Array(this.boardHeight) { "" }

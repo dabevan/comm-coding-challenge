@@ -18,5 +18,9 @@ class Sokoban {
         return Board.toStringArray()
     }
 
+    fun isChallengeComplete(): Boolean {
+        return Board.isChallengeComplete()
+    }
+
 
 }
