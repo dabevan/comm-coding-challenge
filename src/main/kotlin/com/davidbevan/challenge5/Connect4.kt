@@ -2,7 +2,7 @@ package com.davidbevan.challenge5
 
 class Connect4(var board :Array<String>) {
 
-    var lengthOfWinningLine = 4
+    private var lengthOfWinningLine = 4
 
     fun getGridStatus() :String {
         val winner = checkWinner()

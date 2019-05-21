@@ -15,9 +15,9 @@ Challenge2: (didn't complete due to holiday)
  
 Challenge3: "No Main, see println output from tests" 
 
-Challenge4: "Main {tbc}" 
+Challenge4: (didn't complete due to training course)" 
 
-Challenge5: "Main {tbc}" 
+Challenge5: Run Connect4Test unit tests" 
 
 Challenge6: "Main {tbc}"
 
