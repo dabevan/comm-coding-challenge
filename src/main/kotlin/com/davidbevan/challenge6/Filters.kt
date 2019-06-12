@@ -7,11 +7,28 @@ class Filters {
     val numberIsOdd :(Int) -> Boolean = { aNumber:Int -> aNumber % 2 != 0}
 
 
-    fun myFilter(unFilteredNumbers :Array<Int>, rule :(Int) -> Boolean):Array<Int?> {
-        var filteredNumbers = arrayOfNulls<Int>(0)
-        for(number in unFilteredNumbers) if(rule(number)) filteredNumbers += number
-        return filteredNumbers
+    fun myFilter(unFilteredNumbers :Array<Int>, rule :(Int) -> Boolean):Array<Int> {
+        return(recursiveFilter(emptyArray(), unFilteredNumbers.toList(), rule))
     }
 
+    fun recursiveFilter(result :Array<Int>, remainingNumbers :List<Int>, rule :(Int) -> Boolean):Array<Int> {
+        if(remainingNumbers.isEmpty()) return result
+        if(rule(remainingNumbers[0])) {
+            return recursiveFilter(result.plus(remainingNumbers[0]), remainingNumbers.tail(), rule)
+        }
+        return recursiveFilter(result, remainingNumbers.tail(), rule)
+    }
+
+    fun <Int> List<Int>.tail() = this.takeLast(this.size -1)
+
+
+
+    //Below was my first simpler mutable, non-recursive version
+    
+    //fun myFilter(unFilteredNumbers :Array<Int>, rule :(Int) -> Boolean):Array<Int> {
+    //    var filteredNumbers = emptyArray<Int>()
+    //    for(number in unFilteredNumbers) if(rule(number)) filteredNumbers += number
+    //    return filteredNumbers
+   // }
 
 }
