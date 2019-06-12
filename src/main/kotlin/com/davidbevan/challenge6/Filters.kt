@@ -24,7 +24,7 @@ class Filters {
 
 
     //Below was my first simpler mutable, non-recursive version
-    
+
     //fun myFilter(unFilteredNumbers :Array<Int>, rule :(Int) -> Boolean):Array<Int> {
     //    var filteredNumbers = emptyArray<Int>()
     //    for(number in unFilteredNumbers) if(rule(number)) filteredNumbers += number
