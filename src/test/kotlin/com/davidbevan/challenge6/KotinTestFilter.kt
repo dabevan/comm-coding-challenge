@@ -6,12 +6,13 @@ import io.kotlintest.specs.StringSpec
 //Note, our project is now using Kotlin.test for testing so I thought I'd write a Kotlin.test
 //version of the unit tests. These are exactly the same test conditions as FilterTest (which is JUnit)
 
-class	KotlinTestFilter :	StringSpec()	{
+class	KotlinTestFilter(private val hello: String) :	StringSpec()	{
     init {
 
         var filters = Filters()
 
         "test filter numbers less than 5 where 2 numbers qualify" {
+            println("hello:$hello")
             filters.myFilter(arrayOf(3, 4, 5, 6, 7, 8), (filters.numberIsLessThan5)) shouldBe arrayOf(3,4)
         }
 
