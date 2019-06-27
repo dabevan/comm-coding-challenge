@@ -11,6 +11,7 @@ class Filters {
         return(recursiveFilter(emptyArray(), unFilteredNumbers.toList(), rule))
     }
 
+
     fun recursiveFilter(result :Array<Int>, remainingNumbers :List<Int>, rule :(Int) -> Boolean):Array<Int> {
         if(remainingNumbers.isEmpty()) return result
         if(rule(remainingNumbers[0])) {
