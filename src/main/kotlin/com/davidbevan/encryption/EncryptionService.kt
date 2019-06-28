@@ -11,11 +11,16 @@ import javax.crypto.CipherInputStream
 import javax.crypto.CipherOutputStream
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
+import com.google.cloud.kms.v1.AsymmetricDecryptResponse
+import com.google.cloud.kms.v1.AsymmetricDecryptRequest
+import com.google.cloud.kms.v1.CryptoKeyVersionName
 
 
-class EncryptionService() {
 
-    private val resourceName = CryptoKeyName.format("lee-jardine-sandbox", "europe-west2", "beauty_crm_pcd", "beauty_key-1")
+
+class EncryptionService(val projectId: String, val locationId: String, val keyRingId: String, val cryptoKeyId: String) {
+
+    private val resourceName = CryptoKeyName.format(projectId, locationId, keyRingId, cryptoKeyId)
 
     fun encrypt(plaintext: ByteArray): ByteArray {
 
@@ -31,6 +36,24 @@ class EncryptionService() {
 
             val response = client.decrypt(resourceName, ByteString.copyFrom(cipherText))
             return response.plaintext.toByteArray()
+        }
+    }
+
+    fun asymmetricDecrypt(encryptedText: ByteArray): ByteArray {
+        KeyManagementServiceClient.create().use { keyManagementServiceClient ->
+            val name = CryptoKeyVersionName.of(
+                    projectId,
+                    locationId,
+                    keyRingId,
+                    cryptoKeyId,
+                    "1"
+            )
+            val ciphertext = ByteString.copyFrom(encryptedText)
+            val request = AsymmetricDecryptRequest.newBuilder()
+                .setName(name.toString())
+                .setCiphertext(ciphertext)
+                .build()
+            return keyManagementServiceClient.asymmetricDecrypt(request).toByteArray()
         }
     }
 }
@@ -66,17 +89,4 @@ class AESEncryption(private val secretKey: SecretKey) {
     }
 
 
-
-
-
-
-
-
-//fun encrypt(message:String): String {
-//        return "AAAA"
-//    }
-//
-//    fun decrypt(encryptedMessage:String): String {
-//        return "BBBB"
-//    }
 }
