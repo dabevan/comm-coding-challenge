@@ -31,7 +31,7 @@ class TestEncryption: StringSpec() {
             printResult(start,encrypted,decrypted)
         }
 
-        "f:test decryption using Google KMS asymmetric Key" {
+        "test decryption using Google KMS asymmetric Key" {
             val encryptionService = EncryptionService("lee-jardine-sandbox", "europe-west2", "beauty_crm_pcd", "beauty_key-asymmetric-decrypt")
 
             val start = "Hello David!"
@@ -42,7 +42,7 @@ class TestEncryption: StringSpec() {
             printResult(start,encrypted,decrypted)
         }
 
-        "f:test2 decryption using Google KMS asymmetric Key" {
+        "test2 decryption using Google KMS asymmetric Key" {
             val encryptionService = EncryptionService("lee-jardine-sandbox", "europe-west2", "beauty_crm_pcd", "beauty_key-asymmetric-decrypt")
 
             val start = "Hello World!"
