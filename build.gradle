@@ -14,13 +14,15 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-script-runtime"
     compile("com.google.cloud:google-cloud-kms:1.14.0")
     compile("org.bouncycastle:bcprov-jdk15:1.40")
+    compile group: "org.http4k", name: "http4k-core", version: "3.161.0"
+    compile group: 'org.http4k', name: 'http4k-client-apache', version: '3.160.1'
+    compile group: 'org.http4k', name: 'http4k-server-apache', version: '3.160.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
     testImplementation 'org.assertj:assertj-core:3.12.2'
     testCompile 'io.kotlintest:kotlintest:2.0.5'
-
 }
 
 compileKotlin {
