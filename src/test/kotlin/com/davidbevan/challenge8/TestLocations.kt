@@ -74,7 +74,7 @@ class	TestLocations() :	StringSpec()	{
         "test developed Retail Site with owner and a Mega Store" {
             var retailSite = Location.RetailSite("A retail site name", 1000, 30, 100,150,200)
             retailSite.purchase("Dave")
-            retailSite.build(Supermarket(50))
+            retailSite.build(MegaStore(50))
             retailSite.getMaxNum() shouldBe (20)
             retailSite.getRent() shouldBe (80)
             retailSite.getPassingPayment() shouldBe (0)
