@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.*
 
-val mapper = ObjectMapper().registerKotlinModule().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+val mapper: ObjectMapper = ObjectMapper().registerKotlinModule().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
 class BeerFinder {
     fun obtainListOfBeers(pubsInArea:String) : List<Beer>{
@@ -24,11 +24,8 @@ fun listBeersFromPubsInArea(pubs:List<Pub>):List<Beer> {
 }
 
 fun listBeersFromPub(pub:Pub): List<Beer> {
-    val regularBeerNames = pub.RegularBeers
-    val guestBeerNames = pub.GuestBeers
-    val regularBeers = regularBeerNames?.map { name -> Beer(name, pub.Name, pub.PubService, true) }
-    val guestBeers = guestBeerNames?.map { name -> Beer(name, pub.Name, pub.PubService, false) }
-    return regularBeers?.plus(guestBeers?: emptyList()) ?: emptyList()
+    return pub.RegularBeers.map { name -> Beer(name, pub.Name, pub.PubService, true) }.plus(
+           pub.GuestBeers.map { name -> Beer(name, pub.Name, pub.PubService, false) })
 }
 
 
@@ -46,10 +43,10 @@ data class PubsInArea(
 data class Pub(
     val Branch: String,
     val CreateTS: String,
-    val GuestBeers: List<String>?,
+    val GuestBeers: List<String> = emptyList(),
     val Id: String,
     val Name: String,
     val PostCode: String,
     val PubService: String,
-    val RegularBeers: List<String>?
+    val RegularBeers: List<String> = emptyList()
 )
