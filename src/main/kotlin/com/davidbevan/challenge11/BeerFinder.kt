@@ -16,7 +16,8 @@ class BeerFinder {
 
 
 fun removeDuplicatePubs(pubsInArea: PubsInArea): PubsInArea {
-    return PubsInArea(pubsInArea.pubs.toTypedArray().distinctBy { it.Name }.toList())
+    //return PubsInArea(pubsInArea.pubs.toTypedArray().distinctBy { it.Name }.toList())
+    return PubsInArea(pubsInArea.pubs.distinctBy { it.Name })
 }
 
 fun listBeersFromPubsInArea(pubs:List<Pub>):List<Beer> {
