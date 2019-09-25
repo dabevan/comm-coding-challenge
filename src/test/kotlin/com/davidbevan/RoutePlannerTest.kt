@@ -1,7 +1,5 @@
 package com.davidbevan
 
-import com.davidbevan.challenge11.BeerFinder
-import com.davidbevan.challenge11.PubsTestData
 import com.davidbevan.challenge13.RoutePlanner
 import io.kotlintest.specs.StringSpec
 import org.assertj.core.api.Assertions

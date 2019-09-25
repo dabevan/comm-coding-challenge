@@ -1,5 +1,6 @@
 package com.davidbevan.challenge13
 
+import java.time.LocalDateTime
 import java.util.*
 
 data class Location(
@@ -15,6 +16,6 @@ data class RouteItem(
 
 data class ItineraryItem(
     val name:String,
-    val arrivalTime:Date,
-    val departureTime:Date
+    val arrivalTime:LocalDateTime,
+    val departureTime:LocalDateTime
 )
