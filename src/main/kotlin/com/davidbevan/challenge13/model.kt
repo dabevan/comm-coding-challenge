@@ -11,7 +11,7 @@ data class Location(
 
 data class RouteItem(
     val name:String,
-    val distanceFromPreviousLocation:Float
+    val distanceToNextLocation:Float
 )
 
 data class ItineraryItem(

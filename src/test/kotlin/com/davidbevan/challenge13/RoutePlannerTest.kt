@@ -1,4 +1,4 @@
-package com.davidbevan
+package com.davidbevan.challenge13
 
 import com.davidbevan.challenge13.RoutePlanner
 import io.kotlintest.specs.StringSpec
