@@ -16,7 +16,7 @@ object RouteBuilder {
             currentLocation = nextLocationAndDistance.first
         }
         route.add(RouteItem(nextLocationAndDistance.first.name, 0.toFloat()))
-        route.map {routeItem -> println("${routeItem.name}, ${routeItem.distanceToNextLocation}")}
+        //route.map {routeItem -> println("${routeItem.name}, ${routeItem.distanceToNextLocation}")}
         return route
     }
 
