@@ -18,24 +18,11 @@ fun List<String>.myFold(initialValue:String, funct :(String, String) -> String):
 }
 
 
-//fun List<Any>.myFold(initialValue:Any, funct :(Any, Any) -> Any):Any {
-//    var acc = initialValue
-//    this.map { it ->
-//        acc = funct(acc,it)
-//    }
-//    return acc
-//}
+fun <ListType, AccType>myFold(list: List<ListType>, initialValue:AccType, funct:(AccType,ListType)->AccType): AccType {
+    var acc = initialValue
+    list.map { it ->
+        acc = funct(acc,it)
+    }
+    return acc
+}
 
-
-//// fun List<Person>.myFold(initialValue:Int, funct :(Int, Person) -> Int):Any {
-////    var acc = initialValue
-////    this.map { it ->
-////        acc = funct(acc,it)
-////    }
-////    return acc
-////}
-//
-//
-//public data class Person(val firstName:String,
-//                  val surname:String,
-//                  val age:Int)
