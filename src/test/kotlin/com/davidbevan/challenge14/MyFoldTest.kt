@@ -1,6 +1,6 @@
 package com.davidbevan.challenge14
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class MyFoldTest {
 

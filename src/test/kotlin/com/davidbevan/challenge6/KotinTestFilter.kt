@@ -1,6 +1,7 @@
 package com.davidbevan.challenge6
 
 import io.kotlintest.matchers.*
+import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
 //Note, our project is now using Kotlin.test for testing so I thought I'd write a Kotlin.test
