@@ -14,6 +14,7 @@ object RouteBuilder {
             route.add(RouteItem(currentLocation.name, nextLocationAndDistance.second))
             remainingLocations = remainingLocations.filter { location -> location != nextLocationAndDistance.first }
             currentLocation = nextLocationAndDistance.first
+
         }
         route.add(RouteItem(nextLocationAndDistance.first.name, 0.toFloat()))
         //route.map {routeItem -> println("${routeItem.name}, ${routeItem.distanceToNextLocation}")}

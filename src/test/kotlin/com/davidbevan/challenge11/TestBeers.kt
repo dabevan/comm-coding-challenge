@@ -1,7 +1,5 @@
 package com.davidbevan.challenge11
 
-import com.davidbevan.challenge8.Location
-import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 import org.assertj.core.api.Assertions
 
