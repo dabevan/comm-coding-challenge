@@ -49,7 +49,8 @@ class MyFoldTest {
     fun `Example from challenge site with generic fold`() {
         var expected = listOfIntsFourToOne.fold(1) { acc, value ->  acc * value}
         //var expected = fold(listOfIntsFourToOne, 1) { acc, value ->  acc * value}
-        var actual = myFold(listOfIntsFourToOne,1) { acc, value -> acc * value}
+        //var actual = myFold(listOfIntsFourToOne,1) { acc, value -> acc * value}
+        var actual = listOfIntsFourToOne.myFold(1) { acc, value -> acc * value}
         Assertions.assertThat(actual).isEqualTo(expected)
         println(actual)
     }
@@ -57,7 +58,7 @@ class MyFoldTest {
     @Test
     fun `Add up the ages of a list of Persons`() {
         var expected = listOfPersons.fold(0) { acc, value ->  acc + value.age}
-        var actual = myFold(listOfPersons,0) { acc, value -> acc + value.age}
+        var actual = listOfPersons.myFold(0) { acc, value -> acc + value.age}
         Assertions.assertThat(actual).isEqualTo(expected)
         println(actual)
     }
