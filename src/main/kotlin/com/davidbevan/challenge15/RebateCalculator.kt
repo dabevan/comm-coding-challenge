@@ -5,19 +5,17 @@ fun calculateRebateFromSuppliers(deliveriesToDepotsString: String, deliveriesToS
     val deliveriesToShop = parseDeliveriesToShop(deliveriesToShopString)
     val deliveriesToDepots = parseDeliveriesToDepots(deliveriesToDepotsString)
 
-    var returnList = mutableListOf<Any>()
+    var listOfRebatesPerDepot = mutableListOf<Any>()
     for (discount in discountsApplied) {
         val shopDeliveries = findShopDeliveriesForEAN(discount.ean, deliveriesToShop)
         val stockDeliveredPerDepot = calculateStockDeliveredPerDepot(shopDeliveries)
         val rebatePerDepot = calculateRebatePerDepot(discount.amount, stockDeliveredPerDepot)
         //val rebatePerSupplierPerDepot = calculateRebatePerSupplierPerDepot(discount.amount,rebatePerDepot)
+        //val groupRebatesPerSuppliert = groupRebatesPerSupplier(rebatePerSupplierPerDepot)
 
-        returnList = returnList.plus(rebatePerDepot).toMutableList()
-        println("shopDeliveries:$shopDeliveries")
-        println("stockDeliveredPerDepot:$stockDeliveredPerDepot")
-        println("rebatePerDepot:$rebatePerDepot")
+        listOfRebatesPerDepot = listOfRebatesPerDepot.plus(rebatePerDepot).toMutableList()
     }
-    return returnList
+    return listOfRebatesPerDepot
 }
 
 
