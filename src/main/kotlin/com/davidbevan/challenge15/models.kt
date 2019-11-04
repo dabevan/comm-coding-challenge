@@ -19,9 +19,17 @@ data class DeliveryToDepot(val product:String,
                            val quantityDelivered: Int)
 
 data class DepotRebate(val depot: String,
-                       val stockDelivered: Int,
-                       val percentage: Float,
-                       val shareOfRebate: Float)
+                           val stockDelivered: Int,
+                           val percentage: Float,
+                           val shareOfRebate: Float,
+                           val items: List<String>)
+
+data class SupplierRebatePerDepot(val supplier: String,
+                           val depot: String,
+                           val stockDelivered: Int,
+                           val percentage: Float,
+                           val shareOfRebate: Float)
+
 
 data class DepotStockDelivered(val depot: String,
                                val stockDelivered: Int,
