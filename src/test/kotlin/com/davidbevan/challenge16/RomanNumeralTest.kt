@@ -53,4 +53,33 @@ class RomanNumeralTest {
         Assertions.assertThat(result).isEqualTo(expectedValue)
     }
 
+    @Test
+    fun testII() {
+        val result = romanNumeralStringToDecimal("II")
+        val expectedValue = 2
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
+
+    @Test
+    fun testVI() {
+        val result = romanNumeralStringToDecimal("VI")
+        val expectedValue = 6
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
+
+    @Test
+    fun testIV() {
+        val result = romanNumeralStringToDecimal("IV")
+        val expectedValue = 4
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
+
+    @Test
+    fun testMMXIX() {
+        val result = romanNumeralStringToDecimal("MMXIX")
+        val expectedValue = 2019
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
+
+
 }
