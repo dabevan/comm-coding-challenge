@@ -17,4 +17,18 @@ class RomanCalculatorTest {
         val expectedValue = "X"
         Assertions.assertThat(result).isEqualTo(expectedValue)
     }
+
+    @Test
+    fun testMMPlusM() {
+        val result = add("MM", "M")
+        val expectedValue = "MMM"
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
+
+    @Test
+    fun testMCMXCVPlusXXIV() {
+        val result = add("MCMXCV", "XXIV")
+        val expectedValue = "MMXIX"
+        Assertions.assertThat(result).isEqualTo(expectedValue)
+    }
 }
