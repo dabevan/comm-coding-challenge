@@ -3,9 +3,7 @@ package com.davidbevan.challenge17
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions
 
-
-class TestPontoonGame {
-
+class TestCardsForPontoon {
     @Test
     fun `Hand is Pontoon`() {
         Assertions.assertThat(isHandPontoon(listOf("QH", "AC"))).isTrue()
@@ -77,7 +75,7 @@ class TestPontoonGame {
         Assertions.assertThat(isCardAPicture(("KC"))).isTrue()
         Assertions.assertThat(isCardAPicture(("QC"))).isTrue()
         Assertions.assertThat(isCardAPicture(("JC"))).isTrue()
-    
+
         Assertions.assertThat(isCardAPicture(("KS"))).isTrue()
         Assertions.assertThat(isCardAPicture(("QS"))).isTrue()
         Assertions.assertThat(isCardAPicture(("JS"))).isTrue()
