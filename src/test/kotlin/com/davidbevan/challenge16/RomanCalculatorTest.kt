@@ -12,7 +12,7 @@ class RomanCalculatorTest {
     }
 
     @Test
-    fun testVPlusV() {
+    fun `should return X when V plus V to prove that the next roman numeral is used`() {
         val result = add("V", "V")
         val expectedValue = "X"
         Assertions.assertThat(result).isEqualTo(expectedValue)
