@@ -18,14 +18,14 @@ class TestCardsForValue {
         Assertions.assertThat(valueOfCard("KH")).isEqualTo(10)
         Assertions.assertThat(valueOfCard("QH")).isEqualTo(10)
         Assertions.assertThat(valueOfCard("JH")).isEqualTo(10)
-        Assertions.assertThat(valueOfCard("AH")).isEqualTo(10)
+        Assertions.assertThat(valueOfCard("AH")).isEqualTo(1)
     }
 
     @Test
     fun `Two cards`() {
-        Assertions.assertThat(valueOfHand(listOf("2H", "2C"))).isEqualTo(4)
-        Assertions.assertThat(valueOfHand(listOf("TD", "8C"))).isEqualTo(18)
-        Assertions.assertThat(valueOfHand(listOf("KD", "QH"))).isEqualTo(20)
+        Assertions.assertThat(valueOfHand(arrayOf("2H", "2C"))).isEqualTo(4)
+        Assertions.assertThat(valueOfHand(arrayOf("TD", "8C"))).isEqualTo(18)
+        Assertions.assertThat(valueOfHand(arrayOf("KD", "QH"))).isEqualTo(20)
     }
 
 }

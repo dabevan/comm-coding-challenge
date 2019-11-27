@@ -1,6 +1,6 @@
 package com.davidbevan.challenge17
 
-fun isHandPontoon(hand: List<String>): Boolean {
+fun isHandPontoon(hand: Array<String>): Boolean {
     if (hand.size != 2) return false
     if (isCardAPicture(hand[0]) && isCardAnAce(hand[1])) return true
     if (isCardAnAce(hand[0]) && isCardAPicture(hand[1])) return true
