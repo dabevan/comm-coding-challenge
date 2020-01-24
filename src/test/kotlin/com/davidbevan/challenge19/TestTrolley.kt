@@ -72,7 +72,7 @@ class TestTrolley {
         Assertions.assertThat(rotateTrolleyLeft("W")).isEqualTo("S")
     }
 
-    
+
     @Test
     fun testRotateRight() {
         Assertions.assertThat(rotateTrolleyRight("N")).isEqualTo("E")
