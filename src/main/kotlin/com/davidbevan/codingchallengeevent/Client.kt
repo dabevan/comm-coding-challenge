@@ -122,7 +122,7 @@ fun whatToDoNext(referenceAndNextSquare: RefAndNextSquare): String {
 //        "OR", "OLR" -> "MR"
 //        "X" -> ""
 //        else -> "L"
-//    }
+//  }
     return when (referenceAndNextSquare.nextSquare) {
         "O", "OR" -> "M"
         "OL", "OLR" -> "ML"
