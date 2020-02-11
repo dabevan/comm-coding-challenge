@@ -18,7 +18,7 @@ fun move(command: String? = null, referenceId: String? = null): TrolleyView {
 }
 
 
-fun calculateView(position: Position,direction: String): MutableList<String> {
+internal fun calculateView(position: Position,direction: String): MutableList<String> {
     var viewAhead = mutableListOf<String>()
     var currentSquareAndAdjacents = getSquareAndAdjacentsAtPosition(position, direction)
     var viewPosition = position
@@ -80,10 +80,9 @@ fun getTrolleyIdFromReferenceId(referenceId: String?) = decodeReferenceId(refere
 fun newTrolleyId() = (Math.random() * 999999).roundToInt().toString()
 
 
-fun decodeReferenceId(referenceId: String?): String {
-    if (referenceId == null) return "1,1:E#${newTrolleyId()}"
-    return decode(referenceId)
-}
+fun decodeReferenceId(referenceId: String?): String =
+    if (referenceId == null) "1,1:E#${newTrolleyId()}" else  decode(referenceId)
+
 
 
 fun encodeReferenceId(x: Int, y: Int, direction: String, trolleyId: String): String {
