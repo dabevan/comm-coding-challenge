@@ -68,6 +68,4 @@ class SudokuBoard(var cells: IntArray) {
         }
         return cells
     }
-
-
 }
