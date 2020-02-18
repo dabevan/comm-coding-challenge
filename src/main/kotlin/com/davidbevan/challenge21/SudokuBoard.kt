@@ -25,8 +25,8 @@ class SudokuBoard(var cells: IntArray) {
     fun getMissingNumbersInCol(colNum: Int) = getMissingNumbers(getCol(colNum))
 
     fun getMissingNumbersInNonet(colNum: Int, rowNum: Int): IntArray {
-        val nonetColOffset = (Math.floor((colNum / 3).toDouble()) * 3).toInt()
-        val nonetRowOffset = (Math.floor((rowNum / 3).toDouble()) * 3).toInt()
+        val nonetColOffset = (colNum / 3) * 3
+        val nonetRowOffset = (rowNum / 3) * 3
         var placedNumbers = IntArray(0)
         for(row in 0..2) {
             for(col in 0..2) {
