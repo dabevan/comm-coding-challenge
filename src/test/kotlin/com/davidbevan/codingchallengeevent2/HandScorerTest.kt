@@ -14,6 +14,8 @@ internal class HandScorerTest {
         val result = score(hand)
         //Then
         Assertions.assertEquals(expectedResult, result)
+
+        //test comment 2
     }
 
     @Test
