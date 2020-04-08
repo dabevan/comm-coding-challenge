@@ -15,7 +15,7 @@ internal class HandScorerTest {
         //Then
         Assertions.assertEquals(expectedResult, result)
 
-        //test comment
+        //test comment 2
     }
 
     @Test
