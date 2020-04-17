@@ -3,13 +3,6 @@ package com.davidbevan.challenge25
 
 fun displayWeeksOpeningHours(inputJson: String) {
     val weekOpeningHours = importOpeningHours(inputJson)
-    val groupedOpeningHours = weekOpeningHours.daysOpeningHours.groupBy { it.getOpeningHours() }
-//    println(groupedOpeningHours)
-//    println(groupedOpeningHours.map { it.key })
-//    println(groupedOpeningHours.map { it.key }.map { groupedOpeningHours[it]}.map {it})
-//    println(groupedOpeningHours.keys)
-//    println(groupedOpeningHours[groupedOpeningHours.keys.first()]?.first()?.day)
-//    println(groupedOpeningHours.keys.map {groupedOpeningHours[it]?.map {it.day}})
     lookForConsecutivlyEqualOpeningHours(0, weekOpeningHours)
 
 }
@@ -51,6 +44,7 @@ fun lookForConsecutivlyEqualOpeningHours(start: Int, weekOpeningHours: WeekOpeni
 }
 
 fun importOpeningHours(inputJson: String): WeekOpeningHours {
+    //TODO change this to be an import of the JSON
     var weekOpeningHours = WeekOpeningHours()
     weekOpeningHours.addOpeningHours("Monday", OpeningHours("10:00", "20:00"))
     weekOpeningHours.addOpeningHours("Tuesday", OpeningHours("10:00", "20:00"))
