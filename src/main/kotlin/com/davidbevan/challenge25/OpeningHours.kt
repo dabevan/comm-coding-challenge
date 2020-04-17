@@ -24,6 +24,8 @@ class WeekOpeningHours() {
 class DayOpeningHours(val day:String) {
     private val openingHoursForThisDay = mutableListOf<OpeningHours>()
 
+    fun shortDay() = day.substring(0,3)
+
     fun addOpeningHours(openingHours: OpeningHours) {
         openingHoursForThisDay.add(openingHours)
     }

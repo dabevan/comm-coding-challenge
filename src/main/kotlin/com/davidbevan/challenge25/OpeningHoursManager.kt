@@ -28,24 +28,24 @@ fun lookForConsecutivlyEqualOpeningHours(start: Int, weekOpeningHours: WeekOpeni
         if (thisDay.getOpeningHours() == nextDay.getOpeningHours()){
             if(dayIndex == 6) {
                 if(dayIndex == start1 +1) {
-                    print("${startDay.day.substring(0,3)}:${startDay.getOpeningHours()}")
+                    print("${startDay.shortDay()}:${startDay.getOpeningHours()}")
                     start1 = ++dayIndex
                 } else {
-                    print("${startDay.day.substring(0,3)}-${thisDay.day.substring(0,3)}:${startDay.getOpeningHours()}")
+                    print("${startDay.shortDay()}-${thisDay.shortDay()}:${startDay.getOpeningHours()}")
                     start1 = dayIndex
                 }
             }
         } else {
             if (dayIndex == start1 + 1) {
-                print("${startDay.day.substring(0, 3)}:${startDay.getOpeningHours()}, ")
+                print("${startDay.shortDay()}:${startDay.getOpeningHours()}, ")
                 start1 = ++dayIndex
             } else {
-                print("${startDay.day.substring(0, 3)}-${thisDay.day.substring(0,3)}:${startDay.getOpeningHours()}, ")
+                print("${startDay.shortDay()}-${thisDay.shortDay()}:${startDay.getOpeningHours()}, ")
                 start1 = dayIndex
             }
         }
         if(dayIndex == 6) {
-            print("${nextDay.day.substring(0,3)}:${nextDay.getOpeningHours()}")
+            print("${nextDay.shortDay()}:${nextDay.getOpeningHours()}")
         }
     }
 }
@@ -53,7 +53,7 @@ fun lookForConsecutivlyEqualOpeningHours(start: Int, weekOpeningHours: WeekOpeni
 fun importOpeningHours(inputJson: String): WeekOpeningHours {
     var weekOpeningHours = WeekOpeningHours()
     weekOpeningHours.addOpeningHours("Monday", OpeningHours("10:00", "20:00"))
-    weekOpeningHours.addOpeningHours("Tuesday", OpeningHours("6:00", "20:00"))
+    weekOpeningHours.addOpeningHours("Tuesday", OpeningHours("10:00", "20:00"))
     weekOpeningHours.addOpeningHours("Wednesday", OpeningHours("9:00", "19:00"))
     weekOpeningHours.addOpeningHours("Thursday", OpeningHours("10:00", "20:00"))
     weekOpeningHours.addOpeningHours("Friday", OpeningHours("10:00", "20:00"))
