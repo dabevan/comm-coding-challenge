@@ -1,4 +1,4 @@
-val openingHoursSpecification = """{
+val complexOpeningHoursSpecification = """{
   "openingHoursSpecification":
     [
         {
@@ -40,5 +40,30 @@ val openingHoursSpecification = """{
             "opens":"12:00",
             "closes":"17:00"
           }
+    ]
+}""".trimIndent()
+
+val simpleOpeningHoursSpecification = """{
+    "openingHoursSpecification":
+    [    
+        {
+            "dayOfWeek":[
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens":"12:00",
+            "closes":"22:00"
+        } ,
+        {
+            "dayOfWeek":[
+                "Saturday",
+                "Sunday"
+            ],
+            "opens":"12:00",
+            "closes":"23:00"
+        }
     ]
 }""".trimIndent()

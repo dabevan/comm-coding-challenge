@@ -9,7 +9,8 @@ class WeekOpeningHours() {
                                     DayOpeningHours("Thursday"),
                                     DayOpeningHours("Friday"),
                                     DayOpeningHours("Saturday"),
-                                    DayOpeningHours("Sunday"))
+                                    DayOpeningHours("Sunday")
+                                    )
 
 
     fun addOpeningHours(day:String, openingHours: OpeningHours) {
@@ -26,8 +27,9 @@ class DayOpeningHours(val day:String) {
 
     fun shortDay() = day.substring(0,3)
 
-    fun addOpeningHours(openingHours: OpeningHours) {
+    fun addOpeningHours(openingHours: OpeningHours){
         openingHoursForThisDay.add(openingHours)
+        openingHoursForThisDay.sortBy { it.open.substringBefore(":").toInt() }
     }
 
     fun getOpeningHours(): String {

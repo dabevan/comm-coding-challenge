@@ -37,8 +37,9 @@ fun importOpeningHours(inputJson: String): WeekOpeningHours {
     //TODO change this to be an import of the JSON
     var weekOpeningHours = WeekOpeningHours()
     val openingHoursRaw = jacksonObjectMapper().readValue(inputJson, OpeningHoursSpecification::class.java)
-    openingHoursRaw.openingHoursSpecification.map{ weekOpeningHours.addOpeningHours(it.dayOfWeek, it.opens, it.closes)}
-
+    openingHoursRaw.openingHoursSpecification.map{dayOpeningHoursSpecification ->
+        dayOpeningHoursSpecification.dayOfWeek.map { weekOpeningHours.addOpeningHours(it, OpeningHours(dayOpeningHoursSpecification.opens, dayOpeningHoursSpecification.closes)) }
+    }
     return weekOpeningHours
 }
 

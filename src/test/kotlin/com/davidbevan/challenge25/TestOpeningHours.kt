@@ -1,8 +1,9 @@
 package com.davidbevan.challenge25
 
+import complexOpeningHoursSpecification
 import org.assertj.core.api.Assertions
-import org.http4k.format.Json
 import org.junit.jupiter.api.Test
+import simpleOpeningHoursSpecification
 
 class TestOpeningHours {
     @Test
@@ -156,13 +157,22 @@ class TestOpeningHours {
         Assertions.assertThat(formatOpeningHours(weekOpeningHours.daysOpeningHours)).isEqualTo("Mon:10am-1pm| Tue:10am-2pm| Wed:10am-3pm| Thu:10am-4pm| Fri:10am-5pm| Sat:10am-6pm| Sun:10am-7pm")
     }
 
+//   @Test
+//    fun `Should show correctly formatted opening hours from simple JSON example`() {
+//        //Given
+//        //When
+//        val inputJSON = simpleOpeningHoursSpecification
+//        //Then
+//        Assertions.assertThat(displayWeeksOpeningHours(simpleOpeningHoursSpecification)).isEqualTo("Mon-Fri:Midday-10pm| Sat-Sun:Midday-11pm")
+//    }
+
    @Test
-    fun `Should JSON`() {
+    fun `Should show correctly formatted opening hours from complex JSON example`() {
         //Given
         //When
-        displayWeeksOpeningHours(Json.delegate.asA(jlModelPayload, JLModelResponse::class))
+        val inputJSON = complexOpeningHoursSpecification
         //Then
-        Assertions.assertThat(formatOpeningHours(weekOpeningHours.daysOpeningHours)).isEqualTo("Mon:10am-1pm| Tue:10am-2pm| Wed:10am-3pm| Thu:10am-4pm| Fri:10am-5pm| Sat:10am-6pm| Sun:10am-7pm")
+        Assertions.assertThat(displayWeeksOpeningHours(complexOpeningHoursSpecification)).isEqualTo("Mon:CLOSED| Tue:5pm-10pm| Wed-Thu:Midday-2pm, 5pm-10pm| Fri-Sat:Midday-10:30pm| Sun:Midday-5pm")
     }
 
 
