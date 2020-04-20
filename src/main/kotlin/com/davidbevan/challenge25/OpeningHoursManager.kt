@@ -3,32 +3,32 @@ package com.davidbevan.challenge25
 
 fun displayWeeksOpeningHours(inputJson: String) {
     val weekOpeningHours = importOpeningHours(inputJson)
-    println(blahblah(weekOpeningHours.daysOpeningHours))
+    println(formatOpeningHours(weekOpeningHours.daysOpeningHours))
 
 }
 
-fun blahblah(myarray: MutableList<DayOpeningHours>, n: Int=0, i: Int=1, output:String=""):String {
-    if(isEndDayBeyondEndOfWeek(myarray, n, i)) {
-        if(areWeComparingAdjacentDays(i)) { return(output + myarray[n]) } else { return (output) }
+fun formatOpeningHours(myarray: MutableList<DayOpeningHours>, startDayPointer: Int=0, endDayOffset: Int=1, output:String=""):String {
+    if(isEndDayBeyondEndOfWeek(myarray, startDayPointer, endDayOffset)) {
+        if(areWeComparingAdjacentDays(endDayOffset)) { return(output + myarray[startDayPointer]) } else { return (output) }
     }
-    if(adjacentDaysHaveSameOpeningHours(myarray,n,i)) {
-        if(isEndDayAtEndOfWeek(myarray,n ,i)) return blahblah(myarray, n,i+1, output + startDayEndDayAndOpeningHours(myarray, n, i))
-        return blahblah(myarray, n,i+1, output)
+    if(adjacentDaysHaveSameOpeningHours(myarray,startDayPointer,endDayOffset)) {
+        if(isEndDayAtEndOfWeek(myarray,startDayPointer ,endDayOffset)) return formatOpeningHours(myarray, startDayPointer,endDayOffset+1, output + startDayEndDayAndOpeningHours(myarray, startDayPointer, endDayOffset))
+        return formatOpeningHours(myarray, startDayPointer,endDayOffset+1, output)
     }
-    return if(areWeComparingAdjacentDays(i)) {
-        blahblah(myarray, n + i, 1, output + oneBeforeEndDayAndOpeningHours(myarray, n, i))    } else {
-        blahblah(myarray, n + i, 1, output + startDayOneBeforeEndDayAndOpeningHours(myarray, n, i))
+    return if(areWeComparingAdjacentDays(endDayOffset)) {
+        formatOpeningHours(myarray, startDayPointer + endDayOffset, 1, output + oneBeforeEndDayAndOpeningHours(myarray, startDayPointer, endDayOffset))    } else {
+        formatOpeningHours(myarray, startDayPointer + endDayOffset, 1, output + startDayOneBeforeEndDayAndOpeningHours(myarray, startDayPointer, endDayOffset))
     }
 
 }
 
-fun oneBeforeEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray[n + i - 1].shortDay() + ":" + myarray[n + i -1].getOpeningHours() + "| "
-fun startDayOneBeforeEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray[n].shortDay() + "-" + myarray[n + i - 1].shortDay() + ":" + myarray[n + i -1].getOpeningHours() + "| "
-fun startDayEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray[n].shortDay() + "-" + myarray[n+i].shortDay() + ":" + myarray[n+i].getOpeningHours()
-fun adjacentDaysHaveSameOpeningHours(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray[n+i].getOpeningHours() == myarray[n].getOpeningHours()
-fun isEndDayBeyondEndOfWeek(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray.size == n+i
-fun isEndDayAtEndOfWeek(myarray: MutableList<DayOpeningHours>, n: Int, i: Int) = myarray.size == n+i+1
-fun areWeComparingAdjacentDays(i: Int) = i==1
+fun oneBeforeEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = "${myarray[startDayPointer + endDayOffset - 1].shortDay()}:${myarray[startDayPointer + endDayOffset -1].getOpeningHours()}| "
+fun startDayOneBeforeEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = "${myarray[startDayPointer].shortDay()}-${myarray[startDayPointer + endDayOffset - 1].shortDay()}:${myarray[startDayPointer + endDayOffset -1].getOpeningHours()}| "
+fun startDayEndDayAndOpeningHours(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = "${myarray[startDayPointer].shortDay()}-${myarray[startDayPointer+endDayOffset].shortDay()}:${myarray[startDayPointer+endDayOffset].getOpeningHours()}"
+fun adjacentDaysHaveSameOpeningHours(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = myarray[startDayPointer+endDayOffset].getOpeningHours() == myarray[startDayPointer].getOpeningHours()
+fun isEndDayBeyondEndOfWeek(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = myarray.size == startDayPointer+endDayOffset
+fun isEndDayAtEndOfWeek(myarray: MutableList<DayOpeningHours>, startDayPointer: Int, endDayOffset: Int) = myarray.size == startDayPointer+endDayOffset+1
+fun areWeComparingAdjacentDays(endDayOffset: Int) = endDayOffset==1
 
 
 fun importOpeningHours(inputJson: String): WeekOpeningHours {
@@ -46,22 +46,5 @@ fun importOpeningHours(inputJson: String): WeekOpeningHours {
 
 fun main() {
     displayWeeksOpeningHours("")
-
-    val myarray = listOf<Int>(1,2,4,6,7,8,10,12,13,14,15,16)
-    println(blah(myarray))
 }
 
-fun blah(myarray: List<Int>, n: Int=0, i: Int=1, output:String=""):String {
-    if(myarray.size == n+i) {
-        if(i==1) { return(output + myarray[n]) } else { return (output) }
-    }
-    if(myarray[n+i] == myarray[n] + i) {
-        if(myarray.size == n+i+1) return blah(myarray, n,i+1, output + myarray[n] + "-" + myarray[n+i] + ",")
-        return blah(myarray, n,i+1, output)
-    }
-    if(i==1) {
-        return blah(myarray, n + i, 1, output + myarray[n + i - 1] + ",")
-    } else {
-        return blah(myarray, n + i, 1, output + myarray[n] + "-" + myarray[n + i - 1] + ",")
-    }
-}
