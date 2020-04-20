@@ -1,6 +1,7 @@
 package com.davidbevan.challenge25
 
 import org.assertj.core.api.Assertions
+import org.http4k.format.Json
 import org.junit.jupiter.api.Test
 
 class TestOpeningHours {
@@ -151,6 +152,15 @@ class TestOpeningHours {
         weekOpeningHours.addOpeningHours("Friday", OpeningHours("10:00", "17:00"))
         weekOpeningHours.addOpeningHours("Saturday", OpeningHours("10:00", "18:00"))
         weekOpeningHours.addOpeningHours("Sunday", OpeningHours("10:00", "19:00"))
+        //Then
+        Assertions.assertThat(formatOpeningHours(weekOpeningHours.daysOpeningHours)).isEqualTo("Mon:10am-1pm| Tue:10am-2pm| Wed:10am-3pm| Thu:10am-4pm| Fri:10am-5pm| Sat:10am-6pm| Sun:10am-7pm")
+    }
+
+   @Test
+    fun `Should JSON`() {
+        //Given
+        //When
+        displayWeeksOpeningHours(Json.delegate.asA(jlModelPayload, JLModelResponse::class))
         //Then
         Assertions.assertThat(formatOpeningHours(weekOpeningHours.daysOpeningHours)).isEqualTo("Mon:10am-1pm| Tue:10am-2pm| Wed:10am-3pm| Thu:10am-4pm| Fri:10am-5pm| Sat:10am-6pm| Sun:10am-7pm")
     }

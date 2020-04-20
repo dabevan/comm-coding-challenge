@@ -1,9 +1,11 @@
 package com.davidbevan.challenge25
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
-fun displayWeeksOpeningHours(inputJson: String) {
+
+fun displayWeeksOpeningHours(inputJson: String): String {
     val weekOpeningHours = importOpeningHours(inputJson)
-    println(formatOpeningHours(weekOpeningHours.daysOpeningHours))
+    return(formatOpeningHours(weekOpeningHours.daysOpeningHours))
 
 }
 
@@ -34,17 +36,20 @@ fun areWeComparingAdjacentDays(endDayOffset: Int) = endDayOffset==1
 fun importOpeningHours(inputJson: String): WeekOpeningHours {
     //TODO change this to be an import of the JSON
     var weekOpeningHours = WeekOpeningHours()
-    weekOpeningHours.addOpeningHours("Monday", OpeningHours("10:00", "11:00"))
-    weekOpeningHours.addOpeningHours("Tuesday", OpeningHours("10:00", "11:00"))
-    weekOpeningHours.addOpeningHours("Wednesday", OpeningHours("10:00", "11:00"))
-    weekOpeningHours.addOpeningHours("Thursday", OpeningHours("10:00", "11:00"))
-    weekOpeningHours.addOpeningHours("Friday", OpeningHours("10:00", "11:00"))
-    weekOpeningHours.addOpeningHours("Saturday", OpeningHours("10:00", "12:00"))
-    weekOpeningHours.addOpeningHours("Sunday", OpeningHours("10:00", "15:00"))
+    val openingHoursRaw = jacksonObjectMapper().readValue(inputJson, OpeningHoursSpecification::class.java)
+    openingHoursRaw.openingHoursSpecification.map{ weekOpeningHours.addOpeningHours(it.dayOfWeek, it.opens, it.closes)}
+
     return weekOpeningHours
 }
 
-fun main() {
-    displayWeeksOpeningHours("")
-}
+data class OpeningHoursSpecification(
+    val openingHoursSpecification: List<DayOpeningHoursSpecification>
+)
+
+data class DayOpeningHoursSpecification(
+    val dayOfWeek: List<String>,
+    val opens: String,
+    val closes: String
+)
+
 
