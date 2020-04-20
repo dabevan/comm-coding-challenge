@@ -41,6 +41,7 @@ class DayOpeningHours(val day:String) {
 
 data class OpeningHours(val open: String, val close: String) {
     override fun toString(): String {
+        if (open == "00:00" && close == "00:00") return "CLOSED"
         return "${shortTimeFormat(open)}-${shortTimeFormat(close)}"
     }
 
