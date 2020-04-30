@@ -49,6 +49,98 @@ class TestRubiksCube {
         Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
     }
 
+   @Test
+    fun `Should correctly show faces for Front CW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Front", "CW")
+        //Then
+        val expectedNewCube = listOf("GGGGGGGGG","YYYYYYYYY","OOBOOBOOB","WRRWRRWRR","WWWWWWOOO","RRRBBBBBB")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Back CW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Back", "CW")
+        //Then
+        val expectedNewCube = listOf("GGGGGGGGG","YYYYYYYYY","WOOWOOWOO","RRBRRBRRB","RRRWWWWWW","BBBBBBOOO")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+
+    fun rotateClockwiseThreeTimes(startCube: List<String>, layer: String) = rotateCube(rotateCube(rotateCube(startCube, layer, "CW"), layer, "CW"), layer, "CW")
+
+    @Test
+    fun `Should correctly show faces for Top CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Top", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Top")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Bottom CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Bottom", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Bottom")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Left CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Left", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Left")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Right CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Right", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Right")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Front CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Front", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Front")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+   @Test
+    fun `Should correctly show faces for Back CCW`() {
+        //Given
+        val startCube = listOf("GGGGGGGGG","YYYYYYYYY","OOOOOOOOO","RRRRRRRRR","WWWWWWWWW","BBBBBBBBB")
+        //When
+        val newCube = rotateCube(startCube, "Back", "CCW")
+        //Then
+        val expectedNewCube = rotateClockwiseThreeTimes(startCube, "Back")
+        Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
+    }
+
+
 
 
    @Test
@@ -61,7 +153,7 @@ class TestRubiksCube {
                                              'W','W','W','W','W','W','W','W','W', //Top
                                              'B','B','B','B','B','B','B','B','B') //Bottom
         //When
-        val newCube = rotateWholeCubeBy90Deg(startCube)
+        val newCube = rotateWholeCubeRightBy90Deg(startCube)
         //Then
         val expectedNewCube = charArrayOf('G','G','G','G','G','G','G','G','G', //Front
                                              'Y','Y','Y','Y','Y','Y','Y','Y','Y', //Back
@@ -82,7 +174,7 @@ class TestRubiksCube {
                                              'W','W','W','W','W','W','W','W','W', //Top
                                              'B','B','B','B','B','B','B','B','B') //Bottom
         //When
-        val newCube = rotateWholeCubeBy90Deg(startCube,4)
+        val newCube = rotateWholeCubeRightBy90Deg(startCube,4)
         //Then
         val expectedNewCube = charArrayOf('G','G','G','G','G','G','G','G','G', //Front
                                              'Y','Y','Y','Y','Y','Y','Y','Y','Y', //Back
