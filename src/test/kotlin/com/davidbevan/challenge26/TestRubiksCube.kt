@@ -34,7 +34,7 @@ class TestRubiksCube {
         //When
         val newCube = rotateCube(startCube, "Left", "CW")
         //Then
-        val expectedNewCube = listOf("WGGWGGWGG","YYBYYBYYB","OOOOOOOOO","RRRRRRRRR","YWWYWWYWW","BBGBBGBBG")
+        val expectedNewCube = listOf("WGGWGGWGG","YYBYYBYYB","OOOOOOOOO","RRRRRRRRR","YWWYWWYWW","GBBGBBGBB")
         Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
     }
 
@@ -45,7 +45,7 @@ class TestRubiksCube {
         //When
         val newCube = rotateCube(startCube, "Right", "CW")
         //Then
-        val expectedNewCube = listOf("GGBGGBGGB","WYYWYYWYY","OOOOOOOOO","RRRRRRRRR","WWGWWGWWG","YBBYBBYBB")
+        val expectedNewCube = listOf("GGBGGBGGB","WYYWYYWYY","OOOOOOOOO","RRRRRRRRR","WWGWWGWWG","BBYBBYBBY")
         Assertions.assertThat(newCube).isEqualTo(expectedNewCube)
     }
 

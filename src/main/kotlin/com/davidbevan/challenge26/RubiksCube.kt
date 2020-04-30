@@ -27,8 +27,8 @@ fun rotateCube(faces: List<String>, layer: String, direction: String): List<Stri
     var rotatedFaces = rotateWholeCubeBy90Deg(flattenedFaced, rotateTimes)
     if (direction == "CW") rotatedFaces = rotateTopRowClockwise(rotatedFaces)
     if (direction == "CCW") rotatedFaces = rotateTopRowClockwise(rotatedFaces, 3)
-    //return rotateWholeCubeBy90Deg(rotatedFaces, 4 - rotateTimes).toFaces()
-    return rotateWholeCubeBy90Deg(rotatedFaces, 0).toFaces()
+    return rotateWholeCubeBy90Deg(rotatedFaces, 4 - rotateTimes).toFaces()
+    //return rotateWholeCubeBy90Deg(rotatedFaces, 0).toFaces()
 }
 
 fun rotateWholeCubeBy90Deg(faces: CharArray, times: Int = 1) = moveSquares(faces, rotateWholeCubeBy90DegMappings, times)
