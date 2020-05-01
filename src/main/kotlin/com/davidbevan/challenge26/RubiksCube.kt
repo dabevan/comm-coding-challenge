@@ -23,29 +23,27 @@ val rotateTopClockwiseMappings = mapOf(1 to 28, 2 to 29, 3 to 30, //Front
 
 fun rotateCube(faces: List<String>, layer: String, direction: String): List<String> {
     var flattenedFaces = faces.joinToString(separator = "", prefix = "", postfix = "") { it }.toCharArray()
+    var rotatedFaces: CharArray = charArrayOf()
 
-    var rotatedFaces = when (layer) {
-        "Top"   -> flattenedFaces
-        "Bottom" -> rotateWholeCubeRightBy90Deg(flattenedFaces, 2)
-        "Left" -> rotateWholeCubeRightBy90Deg(flattenedFaces, 1)
-        "Right" -> rotateWholeCubeRightBy90Deg(flattenedFaces, 3)
-        "Front" -> rotateWholeCubeUpBy90Deg(flattenedFaces, 1)
-        "Back" -> rotateWholeCubeUpBy90Deg(flattenedFaces, 3)
-        else -> flattenedFaces
+    var rotateCube: ()->CharArray
+    var rotateCubeBackAgain: ()->CharArray
+
+    when (layer) {
+        "Top"   -> {rotateCube = {rotateWholeCubeRightBy90Deg(flattenedFaces, 0)}; rotateCubeBackAgain = {rotateWholeCubeRightBy90Deg(rotatedFaces, 0)}}
+        "Bottom" -> {rotateCube = {rotateWholeCubeRightBy90Deg(flattenedFaces, 2)}; rotateCubeBackAgain = {rotateWholeCubeRightBy90Deg(rotatedFaces, 2)}}
+        "Left" -> {rotateCube = {rotateWholeCubeRightBy90Deg(flattenedFaces, 1)}; rotateCubeBackAgain = {rotateWholeCubeRightBy90Deg(rotatedFaces, 3)}}
+        "Right" -> {rotateCube = {rotateWholeCubeRightBy90Deg(flattenedFaces, 3)}; rotateCubeBackAgain = {rotateWholeCubeRightBy90Deg(rotatedFaces, 1)}}
+        "Front" -> {rotateCube = {rotateWholeCubeUpBy90Deg(flattenedFaces, 1)}; rotateCubeBackAgain = {rotateWholeCubeUpBy90Deg(rotatedFaces, 3)}}
+        "Back" -> {rotateCube = {rotateWholeCubeUpBy90Deg(flattenedFaces, 3)}; rotateCubeBackAgain = {rotateWholeCubeUpBy90Deg(rotatedFaces, 1)}}
+        else -> {rotateCube = {rotateWholeCubeRightBy90Deg(flattenedFaces, 0)}; rotateCubeBackAgain = {rotateWholeCubeUpBy90Deg(rotatedFaces, 0)}}
     }
+
+    rotatedFaces = rotateCube()
 
     if (direction == "CW") rotatedFaces = rotateTopRowClockwise(rotatedFaces)
     if (direction == "CCW") rotatedFaces = rotateTopRowClockwise(rotatedFaces, 3)
 
-    return when (layer) {
-        "Top"   -> rotatedFaces.toFaces()
-        "Bottom" -> rotateWholeCubeRightBy90Deg(rotatedFaces, 2).toFaces()
-        "Left" -> rotateWholeCubeRightBy90Deg(rotatedFaces, 3).toFaces()
-        "Right" -> rotateWholeCubeRightBy90Deg(rotatedFaces, 1).toFaces()
-        "Front" -> rotateWholeCubeUpBy90Deg(rotatedFaces, 3).toFaces()
-        "Back" -> rotateWholeCubeUpBy90Deg(rotatedFaces, 1).toFaces()
-        else -> rotatedFaces.toFaces()
-    }
+    return rotateCubeBackAgain().toFaces()
 }
 
 fun rotateWholeCubeUpBy90Deg(faces: CharArray, times: Int = 1) = moveSquares(faces, rotateWholeCubeUpBy90DegMappings, times)
@@ -65,7 +63,6 @@ fun moveSquares(faces: CharArray, mappings: Map<Int,Int>, times: Int = 1): CharA
     }
     return newFaces
 }
-
 
 fun CharArray.toFaces(): List<String> {
     var faces = listOf<String>()
